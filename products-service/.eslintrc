@@ -1,0 +1,65 @@
+{
+  "root": true,
+  "extends": [
+    "airbnb-typescript/base"
+  ],
+  "env": {
+    "browser": true,
+    "es6": true,
+    "jest": true
+  },
+  "plugins": [
+    "@typescript-eslint",
+    "import"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "project": "./tsconfig.json"
+  },
+  "rules": {
+    "arrow-body-style": "off",
+    "class-methods-use-this": "off",
+    "comma-dangle": ["error", "only-multiline"],
+    "consistent-return": "off",
+    "curly": ["error", "all"],
+    "import/extensions": ["off", "always"],
+    "import/no-extraneous-dependencies": "off",
+    "import/no-unresolved": ["error", { "ignore": ["css/", "js/", "image/"] }],
+    "import/prefer-default-export": "off",
+    "linebreak-style": "off",
+    "max-len": ["error", { "code": 120, "ignoreStrings": true, "ignoreTemplateLiterals": true }],
+    "newline-per-chained-call": "warn",
+    "no-alert": "warn",
+    "no-debugger": "warn",
+    "no-mixed-operators": "off",
+    "no-multiple-empty-lines": ["error", { "max": 1 }],
+    "no-param-reassign": "off",
+    "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }],
+    "no-unused-expressions": "off",
+    "@typescript-eslint/no-unused-vars": "warn",
+    "@typescript-eslint/lines-between-class-members": "off",
+    "@typescript-eslint/no-throw-literal": "off",
+    "padded-blocks": ["warn", "never"],
+    "prefer-template": "off",
+    "radix": ["error", "as-needed"],
+    "import/no-useless-path-segments": ["error", {"noUselessIndex": true}]
+  },
+  "settings": {
+    "import/parsers": {
+      "@typescript-eslint/parser": [".ts", ".tsx"]
+    },
+    "import/resolver": {
+      "node": {
+        "paths": ["node_modules", "./"]
+      },
+      "typescript": {
+        "alwaysTryTypes": true,
+        "project": "./tsconfig.json"
+      }
+    }
+  },
+  "globals": {
+    "CONSTANTS": true
+  },
+  "reportUnusedDisableDirectives": true
+}
