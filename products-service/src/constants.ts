@@ -32,6 +32,11 @@ export const codesToStatusCodesMap = {
   [CODES.INCORRECT_TOKEN]: 403,
 } as const;
 
+export const HEADERS = {
+  'Access-Control-Allow-Origin': '*',
+  'Access-Control-Allow-Credentials': true,
+} as const;
+
 export const DEFAULT_ERROR_STATUS = codesToStatusCodesMap[CODES.SOMETHING_WENT_WRONG];
 export const DEFAULT_SUCCESS_STATUS = codesToStatusCodesMap[CODES.SUCCESS];
 export const DEFAULT_SUCCESS_RESULT = { success: true, code: CODES.SUCCESS };

@@ -22,11 +22,11 @@ Depending on your preferred package manager, follow the instructions below to de
 
 ## Test your service
 
-This template contains a single lambda function triggered by an HTTP request made on the provisioned API Gateway REST API `/hello` route with `POST` method. The request body must be provided as `application/json`. The body structure is tested by API Gateway against `src/functions/hello/schema.ts` JSON-Schema definition: it must contain the `name` property.
+This template contains a single lambda function triggered by an HTTP request made on the provisioned API Gateway REST API `/hello` route with `POST` method. The request body must be provided as `application/json`. The body structure is tested by API Gateway against `src/functions/hello/schema.ts` JSON-Schema definition: it must contain the `title` property.
 
 - requesting any other path than `/hello` with any other method than `POST` will result in API Gateway returning a `403` HTTP error code
-- sending a `POST` request to `/hello` with a payload **not** containing a string property named `name` will result in API Gateway returning a `400` HTTP error code
-- sending a `POST` request to `/hello` with a payload containing a string property named `name` will result in API Gateway returning a `200` HTTP status code with a message saluting the provided name and the detailed event processed by the lambda
+- sending a `POST` request to `/hello` with a payload **not** containing a string property named `title` will result in API Gateway returning a `400` HTTP error code
+- sending a `POST` request to `/hello` with a payload containing a string property named `title` will result in API Gateway returning a `200` HTTP status code with a message saluting the provided title and the detailed event processed by the lambda
 
 > :warning: As is, this template, once deployed, opens a **public** endpoint within your AWS account resources. Anybody with the URL can actively execute the API Gateway endpoint and the corresponding lambda. You should protect this endpoint with the authentication method of your choice.
 
@@ -41,13 +41,13 @@ Check the [sls invoke local command documentation](https://www.serverless.com/fr
 
 ### Remotely
 
-Copy and replace your `url` - found in Serverless `deploy` command output - and `name` parameter in the following `curl` command in your terminal or in Postman to test your newly deployed application.
+Copy and replace your `url` - found in Serverless `deploy` command output - and `title` parameter in the following `curl` command in your terminal or in Postman to test your newly deployed application.
 
 ```
 curl --location --request POST 'https://myApiEndpoint/dev/hello' \
 --header 'Content-Type: application/json' \
 --data-raw '{
-    "name": "Frederic"
+    "title": "Frederic"
 }'
 ```
 
@@ -93,3 +93,7 @@ The project code base is mainly located within the `src` folder. This folder is 
 ### Advanced usage
 
 Any tsconfig.json can be used, but if you do, set the environment variable `TS_NODE_CONFIG` for building the application, eg `TS_NODE_CONFIG=./tsconfig.app.json npx serverless webpack`
+
+## Test
+
+You can test service by postman: https://www.getpostman.com/collections/7e2acc51e34bb4f7ef84

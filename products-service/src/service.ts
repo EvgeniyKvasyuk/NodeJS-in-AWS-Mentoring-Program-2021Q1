@@ -13,8 +13,8 @@ export class ProductsService {
   async existById(id: string): Promise<Maybe<ProductType>> {
     try {
       return await this.products.findById(id);
-    } catch (error) {
-      return null;
+    } catch ({ code, message, stack }) {
+      throw new CustomError({ code, message });
     }
   }
 
@@ -22,8 +22,8 @@ export class ProductsService {
     try {
       const products = await this.products.findAll();
       return { ...DEFAULT_SUCCESS_RESULT, data: products };
-    } catch (error) {
-      return new CustomError({ code: error.code, message: error.message });
+    } catch ({ code, message, stack }) {
+      throw new CustomError({ code, message });
     }
   }
 
@@ -33,9 +33,12 @@ export class ProductsService {
       if (user) {
         return { ...DEFAULT_SUCCESS_RESULT, data: user };
       }
-      return new CustomError({ code: CODES.NOT_FOUND, message: 'Product not found' });
-    } catch (error) {
-      return new CustomError({ message: error.message, code: error.code ?? CODES.SOMETHING_WENT_WRONG });
+      throw new CustomError({ code: CODES.NOT_FOUND, message: 'Product not found' });
+    } catch ({ code, message }) {
+      throw new CustomError({
+        message,
+        code: code ?? CODES.SOMETHING_WENT_WRONG,
+      });
     }
   }
 }

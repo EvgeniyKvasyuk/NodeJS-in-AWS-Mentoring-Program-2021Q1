@@ -1,4 +1,4 @@
-import { codesToStatusCodesMap } from './constants';
+import { codesToStatusCodesMap, HEADERS } from './constants';
 
 export type ResultType<T> = {
   success: boolean,
@@ -9,12 +9,14 @@ export type ResultType<T> = {
 export type ResponseType = {
   statusCode: Values<typeof codesToStatusCodesMap>,
   body: string,
+  headers: typeof HEADERS,
 };
 
 export type ProductType = {
   id: string,
-  name: string,
+  title: string,
   price: string,
+  description: string,
 };
 
 export type ModelType = {

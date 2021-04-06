@@ -2,7 +2,7 @@ import { CODES } from './constants';
 
 type Code = Values<typeof CODES>;
 
-export class CustomError {
+export class CustomError extends Error {
   success: boolean;
   message: string;
   code: Code;
@@ -14,6 +14,7 @@ export class CustomError {
     code?: Code,
     message?: string,
   }) {
+    super();
     this.success = false;
     this.message = message;
     this.code = code;
