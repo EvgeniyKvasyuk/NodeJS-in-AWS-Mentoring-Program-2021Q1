@@ -20,7 +20,13 @@ export class ProductsService {
 
   async get(): Promise<ResultType<Array<ProductType>> | InstanceType<typeof CustomError>> {
     try {
-      const products = await this.products.findAll();
+      const products = await this.products.findAll({
+        include: {
+          model: this.productsCount,
+          as: 'count',
+          attributes: ['count'],
+        },
+      });
       return { ...DEFAULT_SUCCESS_RESULT, data: products };
     } catch ({ code, message, stack }) {
       throw new CustomError({ code, message });

@@ -14,4 +14,4 @@ const products = async () => {
   }
 };
 
-export const main = middyfy(products);
+export const main = middyfy(get);

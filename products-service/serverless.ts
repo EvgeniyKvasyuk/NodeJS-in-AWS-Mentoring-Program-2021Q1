@@ -1,9 +1,13 @@
 import type { AWS } from '@serverless/typescript';
+import { config } from 'dotenv';
 
 import { products, productById } from '@handlers';
 
+config();
+
 const serverlessConfiguration: AWS = {
   service: 'products-service',
+  useDotenv: true,
   frameworkVersion: '2',
   custom: {
     webpack: {
