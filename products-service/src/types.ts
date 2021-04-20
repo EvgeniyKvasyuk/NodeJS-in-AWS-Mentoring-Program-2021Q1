@@ -11,15 +11,3 @@ export type ResponseType = {
   body: string,
   headers: typeof HEADERS,
 };
-
-export type ProductType = {
-  id: string,
-  title: string,
-  price: string,
-  description: string,
-};
-
-export type ModelType = {
-  findAll: () => Promise<Array<ProductType>>
-  findById: (id: string) => Promise<Maybe<ProductType>>
-};

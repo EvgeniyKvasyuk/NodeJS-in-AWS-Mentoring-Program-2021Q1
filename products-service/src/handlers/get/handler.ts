@@ -2,9 +2,13 @@ import 'source-map-support/register';
 
 import { middyfy } from '@libs/lambda';
 import { sendResponse } from '../../utils';
-import { productsService } from '../../service';
+import { ProductsService } from '../../service';
+import { ProductsCountModel, ProductsModel } from '../../models';
 
-const products = async () => {
+export const productsService = new ProductsService(ProductsModel, ProductsCountModel);
+
+const get = async (_, context) => {
+  context.callbackWaitsForEmptyEventLoop = false;
   try {
     const result = await productsService.get();
     return sendResponse(result);
