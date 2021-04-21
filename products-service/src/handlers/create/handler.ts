@@ -9,10 +9,11 @@ import { createProductSchema } from '../../schemas';
 
 const handler = async (event, context) => {
   context.callbackWaitsForEmptyEventLoop = false;
+  console.log('create', event);
   const product = decode(event.body);
   const {
     title,
-    description,
+    description = '',
     price,
     count,
   } = decode(event.body);

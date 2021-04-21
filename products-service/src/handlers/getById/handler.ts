@@ -7,6 +7,7 @@ import { sendResponse } from '../../utils';
 // todo ADD ValidatedEventAPIGatewayProxyEvent for get response without body
 const getById = async (event, context) => {
   context.callbackWaitsForEmptyEventLoop = false;
+  console.log('getById', event);
   const { id } = event.pathParameters;
   console.log('requested product id:', id);
   try {

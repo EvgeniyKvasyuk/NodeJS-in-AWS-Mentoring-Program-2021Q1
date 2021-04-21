@@ -7,8 +7,9 @@ import { ProductsCountModel, ProductsModel } from '../../models';
 
 export const productsService = new ProductsService(ProductsModel, ProductsCountModel);
 
-const get = async (_, context) => {
+const get = async (event, context) => {
   context.callbackWaitsForEmptyEventLoop = false;
+  console.log('get', event);
   try {
     const result = await productsService.get();
     return sendResponse(result);
