@@ -10,5 +10,6 @@ export const createProductSchema = Joi.object({
   description: Joi.string()
     .max(100000),
   count: Joi.number()
+    .required()
     .integer(),
 });
