@@ -5,8 +5,11 @@ import { productsService } from '../../service';
 import { sendResponse } from '../../utils';
 
 // todo ADD ValidatedEventAPIGatewayProxyEvent for get response without body
-const products = async (event) => {
+const getById = async (event, context) => {
+  context.callbackWaitsForEmptyEventLoop = false;
+  console.log('getById', event);
   const { id } = event.pathParameters;
+  console.log('requested product id:', id);
   try {
     const result = await productsService.getById(id);
     return sendResponse(result);
@@ -16,4 +19,4 @@ const products = async (event) => {
   }
 };
 
-export const main = middyfy(products);
+export const main = middyfy(getById);
